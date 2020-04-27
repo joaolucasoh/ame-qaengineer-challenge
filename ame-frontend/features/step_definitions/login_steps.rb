@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 ##### login_nok #####
-Dado('esteja na home page') do
-  expect(@amedigital.login.home_page?).to be_truthy
-end
-
 Quando('logar com o {string} e a {string}') do |usr, pwd|
   @amedigital.login.logar(usr, pwd)
 end
