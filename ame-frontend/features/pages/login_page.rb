@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../support/helpers/base_pages.rb'
+require_relative 'base_pages'
 
 class Login < SitePrism::Page
   attr_reader :login
@@ -8,10 +8,7 @@ class Login < SitePrism::Page
   element :email, '#email'
   element :passwd, '#passwd'
   element :btnlogin, '#SubmitLogin'
-
-  def home_page?
-    has_css?('#slider_row')
-  end
+  element :emailcreate, '#email_create'
 
   def forgotpasswd_page?
     msg = 'Forgot your password?'

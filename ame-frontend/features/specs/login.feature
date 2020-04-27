@@ -4,9 +4,6 @@
 Funcionalidade: Login
 Como QA preciso garantir que o login esteja devidamente funcional, incluindo os tratamentos de erro.
 
-	Contexto: Acessar a tela de login
-		Dado esteja na home page
-
 	@authpage? @login_nok
 	Esquema do Cenario: Login com insucesso
 		Quando logar com o '<usuario>' e a '<senha>'
