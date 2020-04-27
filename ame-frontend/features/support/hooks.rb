@@ -4,10 +4,13 @@ require 'report_builder'
 
 Before do |_scenario|
   visit('/')
-  within('#onesignal-popover-dialog') do
-    click_on('Não')
-  end
-  @estrategia = EstrategiaPages.new
+  @amedigital = AmeDigitalPages.new
+end
+
+Before ('@authpage?') do
+  click_on('Sign in')
+  find('.page-heading')
+  find('#create-account_form') && find('#login_form')
 end
 
 After do 
