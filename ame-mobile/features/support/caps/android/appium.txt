@@ -1,0 +1,9 @@
+[caps]
+platformName = "Android"
+deviceName = "Samsung s8"
+udid = "ce0317139df85ca90c"
+app = "/Users/joaolucas/Documents/automacao/pessoal/ame_challenge/ame_qaengineer_challenge/ame-mobile/files/cadastro_clientes_teste.apk"
+autoGrantPermissions = "true"
+appActivity = "br.com.dudstecnologia.cadastrodeclientes.MainClientes"
+appPackage = "br.com.dudstecnologia.cadastrodeclientes"
+automationName = "UiAutomator2"
