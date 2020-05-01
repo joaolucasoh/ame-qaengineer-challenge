@@ -9,6 +9,9 @@ require_relative '../features/service/employee_service.rb'
 RSpec.configure do |config|
   include Employee
 
+  config.color = true
+  config.formatter = :documentation
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
