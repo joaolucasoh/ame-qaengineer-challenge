@@ -3,7 +3,9 @@
 ## Installing dependencies to run the project.
 
 Basically this project is divided into three repositories: 
-    * ame-backend, ame-frontend and ame-mobile <br>
+    * ame-backend
+    * ame-frontend
+    * ame-mobile <br>
 
 But it's together in a unique repository using the Github subtree.<br>
 
