@@ -8,6 +8,7 @@ Basically we need to install:
 
 * Ruby
 * vscode
+* Appium
 
 ## Technologies
 The project uses the following technologies:
@@ -30,7 +31,7 @@ All gems contained in the Gemfile file have been installed. <b>:)</b>
 * cucumber (run all scenarios)
 * cucumber <b>-t @scenario_name</b> (runs a specific scenario according to the tag.)
 * Choose your device: 
-  - cucumber <b>-p [android or ios]</b>
+  - cucumber <b>-p [android or ios]</b><br>
   Ps.: We will use a android device.
 
 ### Log folder
