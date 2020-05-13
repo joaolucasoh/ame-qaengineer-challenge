@@ -15,6 +15,7 @@ Before do
 end
 
 Before do |_scenario|
+  @screen.home.allow
   @screen.home.home_page?
 end
 

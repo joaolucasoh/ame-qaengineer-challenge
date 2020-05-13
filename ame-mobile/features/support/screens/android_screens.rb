@@ -6,6 +6,11 @@ include CadastroCompleto
 class Home
   attr_reader :home
 
+  def allow
+    msg_allow = find_element(xpath: "//android.widget.Button[@text='Allow']")
+    msg_allow.click if msg_allow.displayed? == true
+  end
+
   def home_page?
     find_element(xpath: "//*[contains(@text,'Cadastro de Clientes')]")
     btn_start
@@ -17,13 +22,13 @@ class Cadastro
 
   def start_cadastro
     option = 'Cadastrar Novo'
-    action.click(btn_start).perform
-    action.click(find_element(xpath: "//*[contains(@text,'#{option}')]")).perform
+    btn_start.click
+    find_element(xpath: "//*[contains(@text,'#{option}')]").click
   end
 
   def cadastrar(type)
     if type == 'Básico'
-      action.click(basico).perform
+      basico.click
       cadastro_basico
       btn_salvar
     else
@@ -38,15 +43,15 @@ class Cadastro
   end
 
   def cadastro_completo
-    action.click(completo).perform
-    action.click(orgaoemissor).perform
-    action.send_keys(orgaoemissor, 'SSP').perform
+    completo.click
+    orgaoemissor.click
+    orgaoemissor.send_keys('SSP')
 
-    action.click(mae).perform
-    action.send_keys(mae, Faker::Name.female_first_name).perform
+    mae.click
+    mae.send_keys(Faker::Name.female_first_name)
 
-    action.click(pai).perform
-    action.send_keys(pai, Faker::Name.male_first_name).perform
+    pai.click
+    pai.send_keys(Faker::Name.male_first_name)
 
     cadastro_basico
     dados_empresa
@@ -54,63 +59,63 @@ class Cadastro
   end
 
   def dados_pessoais
-    action.click(name).perform
-    action.send_keys(name, Faker::Name.name).perform
-    action.click(rg).perform
-    action.send_keys(rg, Faker::Number.leading_zero_number(digits: 9)).perform
-    action.click(cpf).perform
-    action.send_keys(cpf, Faker::CPF.numeric).perform
-    action.click(data).perform
-    action.send_keys(data, '13091991').perform
+    name.click
+    name.send_keys(Faker::Name.name)
+    rg.click
+    rg.send_keys(Faker::Number.leading_zero_number(digits: 9))
+    cpf.click
+    cpf.send_keys(Faker::CPF.numeric)
+    data.click
+    data.send_keys('13091991')
   end
 
   def endereco_completo
-    action.click(endereco).perform
-    action.send_keys(endereco, Faker::Address.street_name).perform
-    action.click(numero).perform
-    action.send_keys(numero, Faker::Address.building_number).perform
-    action.click(bairro).perform
-    action.send_keys(bairro, Faker::Address.city).perform
-    action.click(cep).perform
-    action.send_keys(cep, Faker::Number.leading_zero_number(digits: 9)).perform
+    endereco.click
+    endereco.send_keys(Faker::Address.street_name)
+    numero.click
+    numero.send_keys(Faker::Address.building_number)
+    bairro.click
+    bairro.send_keys(Faker::Address.city)
+    cep.click
+    cep.send_keys(Faker::Number.leading_zero_number(digits: 9))
 
-    action.click(cidade).perform
-    action.send_keys(cidade, Faker::Address.city).perform
+    cidade.click
+    cidade.send_keys(Faker::Address.city)
   end
 
   def dados_empresa
-    action.click(empresa).perform
-    action.send_keys(empresa, Faker::Restaurant.name).perform
+    empresa.click
+    empresa.send_keys(Faker::Restaurant.name)
 
-    action.click(cargo).perform
-    action.send_keys(cargo, Faker::Job.position).perform
+    cargo.click
+    cargo.send_keys(Faker::Job.position)
 
-    action.click(endereco_empresa).perform
-    action.send_keys(endereco_empresa, Faker::Address.street_name).perform
+    endereco_empresa.click
+    endereco_empresa.send_keys(Faker::Address.street_name)
 
-    action.click(cep_empresa).perform
-    action.send_keys(cep_empresa, Faker::Number.leading_zero_number(digits: 9)).perform
+    cep_empresa.click
+    cep_empresa.send_keys(Faker::Number.leading_zero_number(digits: 9))
 
-    action.click(tel_empresa).perform
-    action.send_keys(tel_empresa, Faker::PhoneNumber.phone_number).perform
+    tel_empresa.click
+    tel_empresa.send_keys(Faker::PhoneNumber.phone_number)
 
-    action.click(data_admissao).perform
-    action.send_keys(data_admissao, '01012000').perform
+    data_admissao.click
+    data_admissao.send_keys('01012000')
 
-    action.click(renda).perform
-    action.send_keys(renda, money).perform
+    renda.click
+    renda.send_keys(money)
 
-    action.click(tel_ref).perform
-    action.send_keys(tel_ref, Faker::PhoneNumber.phone_number).perform
+    tel_ref.click
+    tel_ref.send_keys(Faker::PhoneNumber.phone_number)
 
-    action.click(banco).perform
-    action.send_keys(banco, Faker::Bank.name).perform
+    banco.click
+    banco.send_keys(Faker::Bank.name)
 
-    action.click(agencia).perform
-    action.send_keys(agencia, Faker::Bank.account_number(digits: 4)).perform
+    agencia.click
+    agencia.send_keys(Faker::Bank.account_number(digits: 4))
 
-    action.click(conta).perform
-    action.send_keys(conta, Faker::Bank.account_number(digits: 6)).perform
+    conta.click
+    conta.send_keys(Faker::Bank.account_number(digits: 6))
   end
 
   def money
@@ -118,19 +123,21 @@ class Cadastro
   end
 
   def contatos
-    action.click(telefone1).perform
-    action.send_keys(telefone1, Faker::PhoneNumber.phone_number).perform
-    action.click(email).perform
-    action.send_keys(email, Faker::Internet.email).perform
+    telefone1.click
+    telefone1.send_keys(Faker::PhoneNumber.phone_number)
+    email.click
+    email.send_keys(Faker::Internet.email)
 
-    Appium::TouchAction.new.swipe(start_x: 455, start_y: 1745, end_x: 433, end_y: 866, duration: 500).perform
+    Appium::TouchAction.new.swipe(start_x: 0.90, start_y: 0.5, offset_x: 0.5, offset_y: 0.5, duration:3500).perform
+    # execute_script('mobile: swipe', direction: 'up')
+    # Appium::TouchAction.new.swipe(start_x: 455, start_y: 1745, end_x: 433, end_y: 866, duration: 500).click
 
-    action.click(obs).perform
-    action.send_keys(obs, Faker::Lorem.sentences(number: 10)).perform
+    obs.click
+    obs.send_keys(Faker::Lorem.sentences(number: 10))
   end
 
   def btn_salvar
-    action.click(salvar).perform
+    salvar.click
   end
 
   def valida_msg(msg)
@@ -138,20 +145,24 @@ class Cadastro
   end
 
   def btn_ok
-    action.click(find_element(id: 'android:id/button1')).perform
+    find_element(id: 'android:id/button1').click
   end
 
   def excluir_
     cliente = find_element(id: 'br.com.dudstecnologia.cadastrodeclientes:id/nomeLista')
     name_c = cliente.text
 
-    action.click(cliente).perform
-    action.click(btn_excluir).perform if find_element(id: 'br.com.dudstecnologia.cadastrodeclientes:id/editNome').text == name_c
+    cliente.click
+    if find_element(id: 'br.com.dudstecnologia.cadastrodeclientes:id/editNome').text == name_c
+      btn_excluir.click
+    end
   end
 
   def exclusao_msg_pop(msg)
     get_msg = find_element(id: 'android:id/message').text
-    action.click(find_element(id: 'android:id/button1')).perform if get_msg == msg
+    if get_msg == msg
+      find_element(id: 'android:id/button1').click
+    end
   end
 
   def confirm_exclusao(msg)
