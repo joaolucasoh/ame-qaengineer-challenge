@@ -29,7 +29,7 @@ else
 end
 
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome
+  config.default_driver = @driver
   config.app_host = 'http://automationpractice.com/index.php'
   config.ignore_hidden_elements = false
   config.default_max_wait_time = 15
