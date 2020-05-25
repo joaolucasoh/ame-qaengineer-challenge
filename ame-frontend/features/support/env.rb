@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'capybara/cucumber'
+require 'capybara'
 require 'faker'
 require 'pry'
 require 'report_builder'
@@ -29,7 +30,7 @@ else
 end
 
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome_headless
+  config.default_driver = :selenium_chrome
   config.app_host = 'http://automationpractice.com/index.php'
   config.ignore_hidden_elements = false
   config.default_max_wait_time = 15
