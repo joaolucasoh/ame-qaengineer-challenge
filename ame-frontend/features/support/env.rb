@@ -8,29 +8,29 @@ require 'report_builder'
 require 'selenium-webdriver'
 require 'site_prism'
 
-case ENV['BROWSER']
-when 'firefox'
-  @driver = :selenium
-when 'chrome'
-  @driver = :selenium_chrome
-when 'headless'
-  Capybara.register_driver :selenium_chrome_headless do |app|
-    chrome_options = Selenium::WebDriver::Chrome::Options.new.tap do |options|
-      options.add_argument '--window-size=1440,900'
-      options.add_argument '--headless'
-      options.add_argument '--disable-gpu'
-      options.add_argument '--no-sandbox'
-      options.add_argument '--disable-site-isolation-trials'
-    end
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
-    @driver = :selenium_chrome_headless
-  end
-else
-  puts 'Invalid browser'
-end
-
 Capybara.configure do |config|
-  config.default_driver = :selenium_chrome
+  case ENV['BROWSER']
+  when 'firefox'
+    @driver = :selenium
+  when 'chrome'
+    @driver = :selenium_chrome
+  when 'headless'
+    Capybara.register_driver :selenium_chrome_headless do |app|
+      chrome_options = Selenium::WebDriver::Chrome::Options.new.tap do |options|
+        options.add_argument '--window-size=1440,900'
+        options.add_argument '--headless'
+        options.add_argument '--disable-gpu'
+        options.add_argument '--no-sandbox'
+        options.add_argument '--disable-site-isolation-trials'
+      end
+      Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
+      @driver = :selenium_chrome_headless
+    end
+  else
+    puts 'Invalid browser'
+  end
+
+  config.default_driver = @driver
   config.app_host = 'http://automationpractice.com/index.php'
   config.ignore_hidden_elements = false
   config.default_max_wait_time = 15
