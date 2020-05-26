@@ -1,2 +1,5 @@
-default: -p json 
+default: -p json -p chrome
 json: -f json -o log/report.json -f pretty
+chrome: BROWSER=chrome
+firefox: BROWSER=firefox
+headless: BROWSER=headless
