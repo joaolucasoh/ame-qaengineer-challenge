@@ -6,7 +6,7 @@ class DroidScreens
   attr_accessor :home, :cadastro
 
   def initialize
-    @home = Home.new
+    @home = Home::Android.new
     @cadastro = Cadastro.new
   end
 end

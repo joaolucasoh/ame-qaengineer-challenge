@@ -12,8 +12,9 @@ class Home
   end
 end
 
-class Cadastro
-  attr_reader :Cadastro
+module Android
+  class Cadastro
+    attr_reader :Cadastro
 
   def start_cadastro
     option = 'Cadastrar Novo'
@@ -159,3 +160,5 @@ class Cadastro
     get_msg == msg
   end
 end
+end
+
